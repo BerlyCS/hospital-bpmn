@@ -64,15 +64,30 @@
           <dynamicLabel xmi:type="expression:Expression" xmi:id="_VEKaYGd9EfGaxIYxtpBFqA" name="" content="" returnTypeFixed="true"/>
           <dynamicDescription xmi:type="expression:Expression" xmi:id="_VEJzUWd9EfGaxIYxtpBFqA" name="" content="" returnTypeFixed="true"/>
           <stepSummary xmi:type="expression:Expression" xmi:id="_VEKaYWd9EfGaxIYxtpBFqA" name="" content="" returnTypeFixed="true"/>
+          <operations xmi:type="expression:Operation" xmi:id="_saY6sGgREfGOndnCikmWBA">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_saY6sWgREfGOndnCikmWBA" name="reporteFalla" content="reporteFalla" type="TYPE_VARIABLE" returnType="com.company.model.ReporteFalla">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_saY6smgREfGOndnCikmWBA" name="reporteFalla" dataType="_RhmvRGd8EfGaxIYxtpBFqA" className="com.company.model.ReporteFalla"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_saY6s2gREfGOndnCikmWBA" name="reporteFallaInput.afectaRendimiento" content="reporteFallaInput?.afectaRendimiento" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Boolean">
+              <referencedElements xmi:type="process:ContractInput" xmi:id="_saY6tGgREfGOndnCikmWBA" name="reporteFallaInput" type="COMPLEX" createMode="false"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_saY6tWgREfGOndnCikmWBA" type="JAVA_METHOD" expression="setAfectaRendimiento">
+              <inputTypes>java.lang.Boolean</inputTypes>
+            </operator>
+          </operations>
           <loopCondition xmi:type="expression:Expression" xmi:id="_VEKaYmd9EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
           <loopMaximum xmi:type="expression:Expression" xmi:id="_VEKaY2d9EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
           <cardinalityExpression xmi:type="expression:Expression" xmi:id="_VEKaZGd9EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
           <iteratorExpression xmi:type="expression:Expression" xmi:id="_VEKaZmd9EfGaxIYxtpBFqA" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
           <completionCondition xmi:type="expression:Expression" xmi:id="_VEKaZWd9EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
           <formMapping xmi:type="process:FormMapping" xmi:id="_8zpK6Gd-EfGaxIYxtpBFqA">
-            <targetForm xmi:type="expression:Expression" xmi:id="_8zpK6Wd-EfGaxIYxtpBFqA" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+            <targetForm xmi:type="expression:Expression" xmi:id="_DJ1KQGgWEfGOndnCikmWBA" name="evaluarEquipo" content="9bf6885e-33f0-400c-a4df-46dd27bafe5b" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
           </formMapping>
-          <contract xmi:type="process:Contract" xmi:id="_8zpK52d-EfGaxIYxtpBFqA"/>
+          <contract xmi:type="process:Contract" xmi:id="_8zpK52d-EfGaxIYxtpBFqA">
+            <inputs xmi:type="process:ContractInput" xmi:id="_saXskGgREfGOndnCikmWBA" name="reporteFallaInput" type="COMPLEX" dataReference="reporteFalla" createMode="false">
+              <inputs xmi:type="process:ContractInput" xmi:id="_saXskWgREfGOndnCikmWBA" name="afectaRendimiento" type="BOOLEAN" createMode="false"/>
+            </inputs>
+          </contract>
           <expectedDuration xmi:type="expression:Expression" xmi:id="_8zpK6md-EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Long" returnTypeFixed="true"/>
         </elements>
         <elements xmi:type="process:Task" xmi:id="_9YzGYGd-EfGaxIYxtpBFqA" name="Evaluacion tecnica del equipo" outgoing="_FqnoEmd-EfGaxIYxtpBFqA" incoming="_jTHMYGd9EfGaxIYxtpBFqA" overrideActorsOfTheLane="false">
@@ -193,11 +208,15 @@
       <data xmi:type="process:Data" xmi:id="_rk_7gGeoEfGOffa1iNkZcQ" name="presupuestoSuficiente" dataType="_RhmvPGd8EfGaxIYxtpBFqA">
         <defaultValue xmi:type="expression:Expression" xmi:id="_rk_7gWeoEfGOffa1iNkZcQ" name="false" content="false" returnType="java.lang.Boolean"/>
       </data>
-      <data xmi:type="process:BusinessObjectData" xmi:id="_IDI6oGeqEfGOffa1iNkZcQ" name="reporteFalla" dataType="_RhmvRGd8EfGaxIYxtpBFqA" className="com.company.model.SolicitudReemplazo">
-        <defaultValue xmi:type="expression:Expression" xmi:id="_IDI6oWeqEfGOffa1iNkZcQ" name="" content="" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Object"/>
+      <data xmi:type="process:BusinessObjectData" xmi:id="_IDI6oGeqEfGOffa1iNkZcQ" name="reporteFalla" dataType="_RhmvRGd8EfGaxIYxtpBFqA" className="com.company.model.ReporteFalla">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_cuL9AGgQEfGOndnCikmWBA" name="initReporteFalla()" content="import org.bonitasoft.engine.identity.UserNotFoundException&#xD;&#xA;&#xD;&#xA;def reporteFallaVar = new com.company.model.ReporteFalla()&#xD;&#xA;reporteFallaVar.id = reporteFallaInput?.id&#xD;&#xA;reporteFallaVar.descripcionFalla = reporteFallaInput?.descripcionFalla&#xD;&#xA;reporteFallaVar.fechaReporte = reporteFallaInput?.fechaReporte&#xD;&#xA;&#xD;&#xA;try{&#xD;&#xA;&#x9;def processInitiator = apiAccessor.getIdentityAPI().getUser(apiAccessor.getProcessAPI()&#xD;&#xA;&#x9;&#x9;&#x9;.getProcessInstance(processInstanceId)&#xD;&#xA;&#x9;&#x9;&#x9;.getStartedBy())&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;reporteFallaVar.operadorReporta = processInitiatorUser.userName&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;}catch(UserNotFoundException e){&#xD;&#xA;&#x9;// Handle UserNotFoundException here&#xD;&#xA;&#x9;// Was the process started by the system (e.g.: a start event) ?&#xD;&#xA;&#x9;// Has the user who started the process instance been deleted ?&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return reporteFallaVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.company.model.ReporteFalla">
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_ep-e0GgREfGOndnCikmWBA" name="reporteFallaInput" type="COMPLEX"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_ep-e0WgREfGOndnCikmWBA" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_ep-e0mgREfGOndnCikmWBA" name="apiAccessor" content="apiAccessor" type="TYPE_ENGINE_CONSTANT" returnType="org.bonitasoft.engine.api.APIAccessor"/>
+        </defaultValue>
       </data>
       <formMapping xmi:type="process:FormMapping" xmi:id="_RhmvJGd8EfGaxIYxtpBFqA">
-        <targetForm xmi:type="expression:Expression" xmi:id="_RhmvJWd8EfGaxIYxtpBFqA" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+        <targetForm xmi:type="expression:Expression" xmi:id="_wwP1wGgTEfGOndnCikmWBA" name="reportarEquipoDefectuoso" content="33c8292f-b0e5-45dd-b5d6-8e16fc3bd96a" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
       </formMapping>
       <overviewFormMapping xmi:type="process:FormMapping" xmi:id="_RhmvJmd8EfGaxIYxtpBFqA">
         <targetForm xmi:type="expression:Expression" xmi:id="_RhmvJ2d8EfGaxIYxtpBFqA" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
@@ -212,9 +231,11 @@
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_jTHMYGd9EfGaxIYxtpBFqA" name="Si" target="_9YzGYGd-EfGaxIYxtpBFqA" source="_iIS_EGd9EfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_jTHMYWd9EfGaxIYxtpBFqA"/>
-        <condition xmi:type="expression:Expression" xmi:id="_jTHMYmd9EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_jTHMYmd9EfGaxIYxtpBFqA" name="newScript()" content="reporteFalla.afectaRendimiento" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Boolean" returnTypeFixed="true">
+          <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_X2h_oGgSEfGOndnCikmWBA" name="reporteFalla" dataType="_RhmvRGd8EfGaxIYxtpBFqA" className="com.company.model.ReporteFalla"/>
+        </condition>
       </connections>
-      <connections xmi:type="process:SequenceFlow" xmi:id="_-R_NoGd9EfGaxIYxtpBFqA" name="No" target="_-R9_gGd9EfGaxIYxtpBFqA" source="_iIS_EGd9EfGaxIYxtpBFqA">
+      <connections xmi:type="process:SequenceFlow" xmi:id="_-R_NoGd9EfGaxIYxtpBFqA" name="No" target="_-R9_gGd9EfGaxIYxtpBFqA" source="_iIS_EGd9EfGaxIYxtpBFqA" isDefault="true">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_-R_NoWd9EfGaxIYxtpBFqA"/>
         <condition xmi:type="expression:Expression" xmi:id="_-R_Nomd9EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
@@ -228,7 +249,7 @@
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_Hz6P02d-EfGaxIYxtpBFqA" name="Si" target="__lKQQGd-EfGaxIYxtpBFqA" source="_MqT-EGd-EfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_Hz624Gd-EfGaxIYxtpBFqA"/>
-        <condition xmi:type="expression:Expression" xmi:id="_Hz624Wd-EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_Hz624Wd-EfGaxIYxtpBFqA" name="true" content="true" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_LOVvUGd-EfGaxIYxtpBFqA" target="_VcOfoGd-EfGaxIYxtpBFqA" source="__lKQQGd-EfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_LOVvUWd-EfGaxIYxtpBFqA"/>
@@ -236,7 +257,7 @@
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_OBYesGd-EfGaxIYxtpBFqA" name="No" target="_AcmOkGd_EfGaxIYxtpBFqA" source="_MqT-EGd-EfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_OBYesWd-EfGaxIYxtpBFqA"/>
-        <condition xmi:type="expression:Expression" xmi:id="_OBYesmd-EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_OBYesmd-EfGaxIYxtpBFqA" name="false" content="false" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_P33fM2d-EfGaxIYxtpBFqA" target="_Wb5XcGd_EfGaxIYxtpBFqA" source="_AcmOkGd_EfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_P34GQGd-EfGaxIYxtpBFqA"/>
@@ -244,11 +265,11 @@
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_WIzRwGd-EfGaxIYxtpBFqA" name="No" target="_AcmOkGd_EfGaxIYxtpBFqA" source="_VcOfoGd-EfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_WIzRwWd-EfGaxIYxtpBFqA"/>
-        <condition xmi:type="expression:Expression" xmi:id="_WIzRwmd-EfGaxIYxtpBFqA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_WIzRwmd-EfGaxIYxtpBFqA" name="false" content="false" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
-      <connections xmi:type="process:SequenceFlow" xmi:id="_nvVqoGd-EfGaxIYxtpBFqA" target="_nvUcgGd-EfGaxIYxtpBFqA" source="_VcOfoGd-EfGaxIYxtpBFqA">
+      <connections xmi:type="process:SequenceFlow" xmi:id="_nvVqoGd-EfGaxIYxtpBFqA" name="Si" target="_nvUcgGd-EfGaxIYxtpBFqA" source="_VcOfoGd-EfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_nvVqoWd-EfGaxIYxtpBFqA"/>
-        <condition xmi:type="expression:Expression" xmi:id="_nvVqomd-EfGaxIYxtpBFqA" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_nvVqomd-EfGaxIYxtpBFqA" name="true" content="true" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_FzPjImd_EfGaxIYxtpBFqA" target="_wcXk0GeBEfGaxIYxtpBFqA" source="_Wb5XcGd_EfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_FzPjI2d_EfGaxIYxtpBFqA"/>
@@ -256,11 +277,11 @@
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_GQVHwGd_EfGaxIYxtpBFqA" name="Si" target="_PAkG8GeCEfGaxIYxtpBFqA" source="_wcXk0GeBEfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_GQVHwWd_EfGaxIYxtpBFqA"/>
-        <condition xmi:type="expression:Expression" xmi:id="_GQVHwmd_EfGaxIYxtpBFqA" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_GQVHwmd_EfGaxIYxtpBFqA" name="true" content="true" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_SsnCQGd_EfGaxIYxtpBFqA" name="No" target="_Wb5XcGd_EfGaxIYxtpBFqA" source="_wcXk0GeBEfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_SsnpUGd_EfGaxIYxtpBFqA"/>
-        <condition xmi:type="expression:Expression" xmi:id="_SsnpUWd_EfGaxIYxtpBFqA" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_SsnpUWd_EfGaxIYxtpBFqA" name="false" content="false" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_c7J54Gd_EfGaxIYxtpBFqA" target="_Wb5XcGd_EfGaxIYxtpBFqA" source="_ZXoIwGd_EfGaxIYxtpBFqA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_c7Kg8Gd_EfGaxIYxtpBFqA"/>
@@ -282,7 +303,19 @@
       <actors xmi:type="process:Actor" xmi:id="_Oe_4sGeHEfGaxIYxtpBFqA" documentation="Usa el equipo y reporta fallas detectadas." name="Operador de Equipo"/>
       <actors xmi:type="process:Actor" xmi:id="_QowagGeHEfGaxIYxtpBFqA" documentation="Evalúa el equipo, ejecuta reparaciones e instalaciones." name="Técnico de Mantenimiento"/>
       <actors xmi:type="process:Actor" xmi:id="_Td4NgGeHEfGaxIYxtpBFqA" documentation="Estima costos, valida presupuesto y gestiona órdenes de compra." name="Analista de Finanzas"/>
-      <contract xmi:type="process:Contract" xmi:id="_RhmvLGd8EfGaxIYxtpBFqA"/>
+      <contract xmi:type="process:Contract" xmi:id="_RhmvLGd8EfGaxIYxtpBFqA">
+        <inputs xmi:type="process:ContractInput" xmi:id="_cuKu4GgQEfGOndnCikmWBA" name="reporteFallaInput" type="COMPLEX" dataReference="reporteFalla">
+          <inputs xmi:type="process:ContractInput" xmi:id="_cuKu4WgQEfGOndnCikmWBA" name="id"/>
+          <inputs xmi:type="process:ContractInput" xmi:id="_cuKu4mgQEfGOndnCikmWBA" name="descripcionFalla"/>
+          <inputs xmi:type="process:ContractInput" xmi:id="_cuKu42gQEfGOndnCikmWBA" name="fechaReporte" type="OFFSETDATETIME"/>
+        </inputs>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_nmcYoGgTEfGOndnCikmWBA" expression="reporteFallaInput.descripcionFalla.length() >= 10" errorMessage="La descripción debe tener al menos 10 caracteres" name="descripcionMinima">
+          <inputNames>reporteFallaInput</inputNames>
+        </constraints>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_rOju0GgTEfGOndnCikmWBA" expression="!reporteFallaInput.fechaReporte.isAfter(java.time.LocalDate.now())" errorMessage="La fecha del reporte no puede ser futura" name="fechaNoFutura">
+          <inputNames>reporteFallaInput</inputNames>
+        </constraints>
+      </contract>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_RhmvLWd8EfGaxIYxtpBFqA">
         <name xmi:type="expression:Expression" xmi:id="_RhmvLmd8EfGaxIYxtpBFqA" content="" returnTypeFixed="true"/>
         <value xmi:type="expression:Expression" xmi:id="_RhmvL2d8EfGaxIYxtpBFqA" content="" returnTypeFixed="true"/>

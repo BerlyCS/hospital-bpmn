@@ -448,7 +448,7 @@
       <lastName>Nichols</lastName>
       <title>Mr</title>
       <jobTitle>Account manager</jobTitle>
-      <manager>daniela.angelo</manager>
+      <manager>User1</manager>
       <personalData/>
       <professionalData>
         <email>anthony.nichols@acme.com</email>
@@ -782,6 +782,21 @@
     <membership>
       <userName>daniela.angelo</userName>
       <roleName>member</roleName>
+      <groupName>Finanzas</groupName>
+    </membership>
+    <membership>
+      <userName>walter.bates</userName>
+      <roleName>Operador</roleName>
+      <groupName>Operaciones</groupName>
+    </membership>
+    <membership>
+      <userName>walter.bates</userName>
+      <roleName>T&#xe9;cnico de Mantenimiento</roleName>
+      <groupName>Mantenimiento</groupName>
+    </membership>
+    <membership>
+      <userName>walter.bates</userName>
+      <roleName>Analista Financiero</roleName>
       <groupName>Finanzas</groupName>
     </membership>
   </memberships>
