@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<businessObjectModel xmlns="http://documentation.bonitasoft.com/bdm-xml-schema/1.0" modelVersion="1.0">
+    <businessObjects>
+        <businessObject qualifiedName="com.company.model.CompraEquipo">
+            <fields>
+                <field type="STRING" length="255" name="id" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="ordenCompra" nullable="true" collection="false"/>
+                <field type="DOUBLE" length="255" name="montoFinal" nullable="true" collection="false"/>
+                <field type="OFFSETDATETIME" length="255" name="fechaCompra" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.EstimacionPrecio" fetchType="LAZY" name="estimacionPrecio" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.Equipo">
+            <fields>
+                <field type="STRING" length="255" name="id" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="nombre" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="tipo" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="ubicacion" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="estado" nullable="true" collection="false"/>
+                <field type="OFFSETDATETIME" length="255" name="fechaRegistro" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.EstimacionPrecio">
+            <fields>
+                <field type="STRING" length="255" name="id" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="proveedor" nullable="true" collection="false"/>
+                <field type="DOUBLE" length="255" name="monto" nullable="true" collection="false"/>
+                <field type="OFFSETDATETIME" length="255" name="fechaCotizacion" nullable="true" collection="false"/>
+                <field type="BOOLEAN" length="255" name="presupuestoSuficiente" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.SolicitudReemplazo" fetchType="LAZY" name="solicitudReemplazo" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.EvaluacionTecnica">
+            <fields>
+                <field type="STRING" length="255" name="id" nullable="true" collection="false"/>
+                <field type="TEXT" length="255" name="diagnostico" nullable="true" collection="false"/>
+                <field type="BOOLEAN" length="255" name="esReparable" nullable="true" collection="false"/>
+                <field type="OFFSETDATETIME" length="255" name="fechaEvaluacion" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.ReporteFalla" fetchType="LAZY" name="reporteFalla" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.InstalacionEquipo">
+            <fields>
+                <field type="STRING" length="255" name="id" nullable="true" collection="false"/>
+                <field type="OFFSETDATETIME" length="255" name="fechaInstalacion" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="tecnicoResponsable" nullable="true" collection="false"/>
+                <relationField type="COMPOSITION" reference="com.company.model.CompraEquipo" fetchType="LAZY" name="compraEquipo" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Equipo" fetchType="LAZY" name="equipoNuevo" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.Reparacion">
+            <fields>
+                <field type="STRING" length="255" name="id" nullable="true" collection="false"/>
+                <field type="TEXT" length="255" name="detalle" nullable="true" collection="false"/>
+                <field type="DOUBLE" length="255" name="costo" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="tecnicoAsignado" nullable="true" collection="false"/>
+                <field type="BOOLEAN" length="255" name="exitosa" nullable="true" collection="false"/>
+                <field type="OFFSETDATETIME" length="255" name="fechaReparacion" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.EvaluacionTecnica" fetchType="LAZY" name="evaluacionTecnica" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.ReporteFalla">
+            <fields>
+                <field type="STRING" length="255" name="id" nullable="true" collection="false"/>
+                <field type="TEXT" length="255" name="descripcionFalla" nullable="true" collection="false"/>
+                <field type="OFFSETDATETIME" length="255" name="fechaReporte" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="operadorReporta" nullable="true" collection="false"/>
+                <field type="BOOLEAN" length="255" name="afectaRendimiento" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Equipo" fetchType="LAZY" name="equipo" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.SolicitudReemplazo">
+            <fields>
+                <field type="STRING" length="255" name="id" nullable="true" collection="false"/>
+                <field type="TEXT" length="255" name="justificacion" nullable="true" collection="false"/>
+                <field type="OFFSETDATETIME" length="255" name="fechaSolicitud" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.EvaluacionTecnica" fetchType="LAZY" name="evaluacionTecnica" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+    </businessObjects>
+</businessObjectModel>
